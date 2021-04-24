@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-for指令</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="button" value="添加属性" @click="add" />
+			<input type="button" value="移除数据" @click="remove" />
+			<ul>
+				<li v-for="(item,index) in arr">{{index+1}}小江江{{item}}</li>
+			</ul>
+			<h2 v-for="it in foot" v-bind:title="it.name">{{ it.name }}</h2>
+		</div>
+		<script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#app',
+				data: {
+					arr: ["吃饭了", "吃菜了", "吃肉了", "吃醋了"],
+					foot: [{
+							name: "蛋炒饭"
+						},
+						{
+							name: "西红柿炒蛋"
+						}
+					]
+				},
+				methods: {
+					add: function() {
+						this.foot.push({
+							name: "花菜炒蛋"
+						})
+					},
+					remove: function() {
+						this.foot.shift();
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

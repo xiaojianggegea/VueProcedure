@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>音乐播放器</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css.css" />
+	<body>
+		<canvas id="c"></canvas>
+		<div id="box">
+			<div id="nav-box">
+				<span>小江音乐</span>
+				<input type="text" v-model="query" @keyup.enter="searchMusic" placeholder="请输入要查询的音乐">
+				<img src="../images/icon-find.png" @click="searchMusic">
+			</div>
+			<div id="section-box">
+				<div id="song_wrapper">
+					<ul>
+						<li v-for="item in musicList">
+							<a href="javascript:;">
+								<img src="../images/bofang-copy.png" @click="playMusic(item.id)">
+							</a>
+							<b>{{item.name}}</b>
+							<span><i></i></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="player_con">
+				<img src="../images/collection.png" class="imgbox1">
+				<img :src="musicCover" class="imgbox2" :class="{playing:isplaying}">
+				<div id="yuanbox"></div>
+			</div>
+			<div id="pinglun">
+				<span>热门留言</span>
+				<ul v-for="item in hotComments">
+					<li id="ddname">
+						<img :src="item.user.avatarUrl" alt=" ">
+					</li>
+					<li id="ddname1">{{item.user.nickname}}</li>
+					<li id="ddname2">{{item.content}}</li>
+				</ul>
+
+			</div>
+			<audio :src="musicUrl" @play="play()" @pause="pause()" controls="controls" autoplay="autoplay" loop="loop"
+				class="myaudio">
+				当前浏览器不支持audio
+			</audio>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="../js/music.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

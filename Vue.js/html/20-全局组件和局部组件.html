@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>全局组件和局部组件</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<!-- 全局组件，只要定义了，处处可以使用，性能不高，但使用起来简单 -->
+		<!-- 局部组件，定义了需要注册才能使用，性能比较高，使用起来有点麻烦，建议大写字母开头，驼峰命名 -->
+		<div id="box"></div>
+		<script>
+			// 局部组件
+			const Counter = {
+				data(){
+					return{
+						count: 1
+					}
+				},
+				template:`<div @click="count += 1">{{count}}</div>`
+			};
+			const Hello = {
+				template:`<div>hello world</div>`
+			}
+			const app = Vue.createApp({
+				// 注册局部组件
+				components:{"dell":Counter,
+				'hello-world':Hello,
+				// Counter，Hello会自动映射出来
+			},
+			// 使用组件
+				template:`<div><hello/><content/></div>局部<dell/> <hello-world/>`
+			});
+			// 调用子组件
+			app.component('content',{
+				template:`<hello/>`
+			});
+			// 创建子组件
+			app.component('hello',{
+				template:`<div>hello</div>`
+			});
+			const vm = app.mount("#box");
+		</script>
+	</body>
+</html>

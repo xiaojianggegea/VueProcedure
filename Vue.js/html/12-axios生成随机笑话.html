@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>随机笑话</title>
+		<style type="text/css">
+			#box1 {
+				float: left;
+				width: 100%;
+				height: 300px;
+				padding: 20px;
+				background: #aaff7f;
+				margin:0px auto;
+				font-size: 24px;
+				color: #00aa7f;
+			}
+			input{
+				float: left;
+				margin: 0px auto;
+				font-size: 24px;
+				color: #00aa7f;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<p id="box1">{{joke}}</p>
+			<input type="button" value="获取笑话" @click="getJoke()"/>
+		</div>
+		<script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:"#app",
+				data:{
+					joke:"小江讲笑话"
+				},
+				methods:{
+					getJoke:function(){
+						var item = this;
+						axios.get("https://autumnfish.cn/api/joke?num=1")
+						.then(function(response){
+							item.joke = response.data;
+						},function(err){
+							console.log(err);
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件间传值及校验</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			const app = Vue.createApp({
+				// 动态传参
+				data() {
+					return {
+						num: 123
+					}
+				},
+				// 全局组件  :content动态属性传参原本类型，content静态传参类型为字符串，num
+				template: `<div><test :content="num"/></div>`
+			});
+			// 局部组件
+			app.component('test', {
+				// 接受content的值
+				// props:{
+				// 	content:{
+				// type:String,传值类型。
+				// required:true,必须传值,否则会有警告。
+				// ****default:234 未传值时为默认值234,default也可以是函数。
+				// validator:function(value){深度的数据校验小于1000就传值。
+				// return value<1000;  
+				// };
+				//	}
+				// }对象传参指定数据类型传参
+				props: ['content'],
+				template: `<div>test--值：{{content}}</div>`
+			});
+			const vm = app.mount("#box");
+		</script>
+	</body>
+</html>

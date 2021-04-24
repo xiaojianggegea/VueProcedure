@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-on事件绑定</title>
+	</head>
+	<body>
+		<div id="box">
+			<!-- 标签内部写一个v-on属性 -->
+			<input type="button" value="v-on指令" v-on:click="include" />
+			<!-- 简写 -->
+			<input type="button" value="简写" @click="include" />
+			<!-- 修改内容-->
+			<h2 @click="change">{{food}}</h2>
+			<!-- 参数的传递 -->
+			<input type="button" value="传参" @click="doIt(123,'小江')"/>
+			<!-- 输入显示事件修饰 -->
+			<input type="text" @keyup.enter="sayHi" />
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#box",
+				data: {
+					food: "西红柿炒蛋"
+				},
+				methods: {
+					include: function() {
+						alert("小江！")
+					},
+					change: function() {
+						this.food += "好好吃！"
+					},
+					doIt:function(a,b){
+						alert(a);
+						alert(b);
+					},
+					sayHi:function(){
+						alert("haha");
+					}
+				}
+			}) 
+		</script>
+	</body>
+</html>

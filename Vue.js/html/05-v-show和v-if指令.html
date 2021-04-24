@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-show和v-if属性</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="button" value="切换显示按钮" @click="change1()" />
+			<input type="button" value="累加年龄" @click="change2()" />
+			<!-- v-show修改display属性 -->
+			<img src="../images/depth-travel2.png" v-show="isShow">
+			<img src="../../CSS/imgs/1.jpeg" v-show="age>=18">
+			<!-- v-if 删除dom树中节点 -->
+			<p v-if="isShow">小江江</p>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					isShow: false,
+					age: 15
+				},
+				methods: {
+					change1: function() {
+						this.isShow = !this.isShow;
+					},
+					change2: function() {
+						this.age++;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

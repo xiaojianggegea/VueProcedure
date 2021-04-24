@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>记事本</title>
+		<style type="text/css">
+			div {
+				width: 400px;
+				height: auto;
+				padding-bottom: 5px;
+				background: #36DFBA;
+				margin: 100px auto;
+			}
+
+			input {
+				width: 300px;
+				height: 20px;
+				color: #4585FE;
+				margin-top: 20px;
+				margin-left: 50px;
+			}
+
+			#clear {
+				float: right;
+				margin-top: -25px;
+				margin-left: 350px;
+			}
+
+			#libox {
+				list-style: none;
+				color: #959595;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input v-model="inputValue" @keyup.enter="add" type="text" autofocus="autofocus" autocomplete="off"
+				placeholder="请输入内容..." />
+			<ul id="ulbox">
+				<li id="libox" v-for="(item,index) in list">
+					<span id="index">{{index+1}}</span>
+					<label>{{item}}</label>
+					<button @click="remove(index)">删除</button>
+				</li>
+			</ul>
+			<span id="span-box" v-show="list.length!=0">
+				<strong>{{list.length}}</strong>
+				items left
+			</span>
+			<button id="clear" @click="clear" v-show="list.length!=0">清空</button>
+		</div>
+		<script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: '#box',
+				data: {
+					list: ["吃饭饭", "睡觉觉"],
+					inputValue: "好好学习!"
+				},
+				methods: {
+					add: function() {
+						this.list.push(this.inputValue);
+						this.inputValue = '';
+					},
+					remove: function(index) {
+						this.list.splice(index, 1);
+					},
+					clear: function() {
+						this.list = [];
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

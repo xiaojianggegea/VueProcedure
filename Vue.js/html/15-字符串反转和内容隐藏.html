@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>字符串反转和内容隐藏</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			const app = Vue.createApp({
+				data(){
+					return {
+						show:true,
+						content1: 'hello world',
+						content2: 'hello world'
+					}
+				},
+				methods:{
+					handleBtnClick1() {
+						this.content1 = this.content1.split('').reverse().join('');
+					},
+					handleBtnClick2() {
+						this.show=!this.show;
+					}
+				},
+				template:`<div>
+					{{content1}}
+					<button @click="handleBtnClick1">反转</button>
+					<button @click="handleBtnClick2">显示/隐藏</button>
+					<div v-if="show">{{content2}}</div>
+					<todo-item></todo-item>
+					</div>`
+			});
+			app.component('todo-item',{
+				template:`
+				<button>组件</button>
+				`
+			});
+			app.mount("#box");
+		</script>
+	</body>
+</html>

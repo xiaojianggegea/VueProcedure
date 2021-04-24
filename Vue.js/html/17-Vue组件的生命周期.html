@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue组件的生命周期</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        // 生命周期函数：在某一时刻自动执行的函数
+        const app = Vue.createApp({
+            data(){
+                return{
+                    meessage:'hello world'
+                }
+            },
+            // 在实列生成之前自动执行的函数
+            beforeCreate(){
+                console.log("beforeCreate先执行");
+            },
+            // 在实列生成之后自动执行的函数
+            created(){
+                console.log("Created后执行");
+            },
+            // 在组件内容被渲染到页面之前自动执行的函数
+            beforeMount(){
+                console.log("beforeMount，在组件内容被渲染到页面之前自动执行的函数");
+            },
+            // 在组件内容被渲染到页面之后自动执行的函数
+            mounted(){
+                console.log("beforeMount，在组件内容被渲染到页面之后执行");
+            },
+            // 在data中的数据发生变化时立即自动执行的函数
+            beforeUpdata(){
+                console.log("beforeUpdata，在data中的数据发生变化时立即自动执行的函数");
+            },
+			updated(){
+				 console.log("updated，在data中的数据发生变化,同时页面更新时自动执行的函数");
+			},
+			//在Vue应用失效时自动执行的函数
+			beforeUnmout(){
+				console.log("beforeUnmout，在Vue应用失效时自动执行的函数");
+			},
+			// unmouted，在Vue应用失效时，且dom完全销毁时自动执行的函数
+			unmouted(){
+				console.log("unmouted，在Vue应用失效时，且dom完全销毁时自动执行的函数");
+			},
+            template:"<div>{{meessage}}</div>"
+        });
+        const vm = app.mount("#box");
+    </script>
+</body>
+</html>

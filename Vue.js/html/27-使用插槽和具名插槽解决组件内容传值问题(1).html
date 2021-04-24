@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>使用插槽和具名插槽解决组件内容传值问题1</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		// ****父组件****
+		// slot 插槽
+		// 插槽中可以传字符串，子组件，标签
+		// 父组件中调用的数据属性,使用的都是父组件的data
+		// 子组件中调用的数据属性,使用的都是子组件的data
+			const app = Vue.createApp({
+			data() {
+				return{
+					text:'提交',
+				}
+			},
+			template: `
+			<div>
+					<myform>
+						<div>{{text}}</div>
+					</myform>
+					<myform>
+						<button>{{text}}</button>
+					</myform>
+			</div>
+			`
+		});
+		// ****子组件****
+		app.component('myform', {
+			methods:{
+				handleClick(){
+					alert("123");
+				}
+			},
+			// <slot>标签不能绑定事件
+			// <slot></slot>默认值为default value
+			template: `
+				<div>
+					<input/>
+					<span @click="handleClick">
+					<slot>default value</slot>
+					</span>
+				</div>
+			`
+		});
+		const vm = app.mount("#box");
+	</script>
+</html>

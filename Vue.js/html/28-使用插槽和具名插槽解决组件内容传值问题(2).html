@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>使用插槽和具名插槽解决组件内容传值问题2</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script type="text/javascript">
+		// ****父组件****
+		// slot 插槽
+			const app = Vue.createApp({
+			template: `
+					<layout>
+						<template v-slot:header>
+							<div>header</div>
+						</temlpate>
+						<template v-slot:footer>
+							<div>footer</div>
+						</temlpate>
+					</layout>
+			`
+		});
+		// ****子组件****
+		app.component('layout', {
+			template: `	
+			<div>
+				<slot name="header"></slot>
+				<div>content</div>
+				<slot name="footer"></slot>
+			</div>
+			`
+		});
+		const vm = app.mount("#box");
+	</script>
+</html>

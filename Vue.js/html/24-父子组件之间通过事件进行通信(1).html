@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>父子组件通过事件进行通信</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			const app = Vue.createApp({
+				data() {
+					return {
+						count: 1,
+					}
+				},
+				methods: {
+					handAddOne(param) {
+						// 通过this.$emit('事件名');来告诉父组件修改count
+						this.count += param;
+					}
+				},
+				// 父组件
+				// 在父组件上设置监听子组件事件方法，命名时父组件上如：@add-one
+				template: `
+					<div>
+						<counter :count="count" @add-one="handAddOne"/>
+					</div>
+				`
+			});
+			// 子组件
+			app.component('counter', {
+				props: ['count'],
+				emits: {
+					addOne: (count) => {
+						// 判断传过来的参数是否大于0，否则报出警告
+						if (count > 0) {
+							return true;
+						}
+						return false;
+					}
+				},
+				methods: {
+					addOne() {
+						// 通过this.$emit('事件名');来告诉父组件修改count
+						this.$emit('addOne', 2);
+					}
+				},
+				template: `
+					<div @click='addOne'>{{count}}</div>
+				`
+			});
+			const vm = app.mount("#box");
+		</script>
+	</body>
+</html>

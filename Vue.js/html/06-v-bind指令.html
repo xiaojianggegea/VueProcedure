@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-bind属性</title>
+		<style type="text/css">
+			.active {
+				border: 4px solid #00FF00;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<img v-bind:src="imgSrc" v-bind:title="imgTitle">
+			<!-- 简写 -->
+			<!-- 三元表达式写法 -->
+			<!-- <img :src="imgSrc" :title="imgTitle" :class="isActive?'active':''" @click="changeActive()"> -->
+			<!-- 对象写法 -->
+			<img :src="imgSrc" :title="imgTitle" :class="{active:isActive}" @click="changeActive()">
+		</div>
+		<script src=" https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el: "#app",
+				data: {
+					imgSrc: "../images/depth-travel3.png",
+					imgTitle: "小江的图片！",
+					isActive: false
+				},
+				methods: {
+					changeActive: function() {
+						this.isActive = !this.isActive;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

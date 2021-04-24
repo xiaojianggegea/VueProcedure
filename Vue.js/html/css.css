@@ -1,0 +1,207 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#box {
+  margin:0 auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 600px;
+  height: 500px;
+  background: url(../images/background.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+
+#box #nav-box {
+  position: relative;
+  width: 580px;
+  height: 40px;
+  background: rgba(0, 255, 255, 0.6);
+}
+
+#box #nav-box span {
+  float: left;
+  margin-left: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  color: #FFFFFF;
+  font-family: 方正舒体;
+}
+
+#box #nav-box input {
+  float: right;
+  margin-right: 40px;
+  margin-top: 10px;
+  font-size: 10px;
+  line-height: 20px;
+  padding-left: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  outline: none;
+  border: #00FFFF solid 1px;
+}
+
+#box #nav-box img {
+  position: absolute;
+  left: 513px;
+  top: 13px;
+  width: 15px;
+}
+
+#box #section-box {
+  float: left;
+  width: 170px;
+  height: 410px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+#box #section-box #song_wrapper ul {
+  width: 150px;
+  height: 410px;
+  margin-left: 20px;
+  list-style: none;
+  overflow-y: scroll;
+}
+
+#box #section-box #song_wrapper ul li {
+  padding-left: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  color: #444444;
+  border-bottom: #c6c6c6 solid 1px;
+}
+
+#box #section-box #song_wrapper ul li b {
+  margin-left: 5px;
+}
+
+#box #section-box #song_wrapper ul li a img {
+  width: 20px;
+  vertical-align: middle;
+}
+
+#box #player_con {
+  position: relative;
+  float: left;
+  margin-top: 110px;
+  width: 200px;
+  height: 200px;
+  margin-left: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: #000000 solid 5px;
+  border-radius: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#box #player_con .imgbox1 {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  top: 50%;
+  margin-top: -100px;
+}
+
+#box #player_con .imgbox2 {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -50px;
+  border-radius: 50px;
+}
+
+#box #player_con #yuanbox {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  top: 50%;
+  margin-top: -75px;
+  border-radius: 75px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: #000000 solid 30px;
+}
+
+#box #pinglun {
+  float: left;
+  margin-left: 20px;
+  padding: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 170px;
+  height: 410px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow-y: scroll;
+}
+
+#box #pinglun span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#box #pinglun ul {
+  list-style: none;
+}
+
+#box #pinglun ul #ddname {
+  float: left;
+}
+
+#box #pinglun ul #ddname img {
+  float: left;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+#box #pinglun ul #ddname1 {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+#box #pinglun ul #ddname2 {
+  margin-top: 5px;
+  font-size: 10px;
+  color: #000000;
+}
+
+#box .playing {
+  -webkit-transform: translate(0, 0) rotate(360deg);
+  animation: rotation 8s linear infinite;
+  -moz-animation: rotation 8s linear infinite;
+  -webkit-animation: rotation 8s linear infinite;
+  -o-animation: rotation 8s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: translate(0, 0) rotate(0deg);
+  }
+  to {
+    -webkit-transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+#box .myaudio {
+  width: 580px;
+  height: 30px;
+  margin-top: 5px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.5);
+}
+/*# sourceMappingURL=css.css.map */

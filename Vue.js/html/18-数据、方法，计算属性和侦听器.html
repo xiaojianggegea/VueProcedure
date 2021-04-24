@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数据、方法，计算属性和侦听器</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+		// 方法，计算属性都能实现的功能，使用计算属性比较好，计算属性有缓存
+		// 计算属性和侦听器选择计算属性，计算属性简洁
+			const app = Vue.createApp({
+				// 数据
+				data() {
+					return {
+						message: "hello world",
+						conunt: 2,
+						price: 5
+					}
+				},
+				// 计算属性
+				// 当计算属性依赖的内容发生变更时，才会重新执行计算
+				computed: {
+					total() {
+						return this.conunt * this.price;
+					}
+				},
+				// 方法
+				// 只要页面渲染，才会重新计算
+				methods: {
+					change() {
+						this.message = 'hahaha';
+					}
+				},
+				// 侦听器
+				// 监听数据的改变时，函数才会执行
+				watch:{
+					message(){
+						setTimeout(()=>{
+							this.message = "hello world"
+						},3000)
+					}
+				},
+				template: `<div>{{message}}</div>
+				<button @click="change">变化</button>
+				<div>价格：{{total}}</div>`
+			});
+			const vm = app.mount("#box");
+		</script>
+	</body>
+</html>

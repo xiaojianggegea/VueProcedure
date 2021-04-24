@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>父子组件通过事件进行通信</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			const app = Vue.createApp({
+				data() {
+					return {
+						count: 1,
+					}
+				},
+				// 父组件
+				// 在父组件上设置监听子组件事件方法，命名时父组件上如：@add-one
+				template: `
+					<div>
+						<counter v-model="count"/>
+					</div>
+				`
+			});
+			// 子组件
+			app.component('counter', {
+				// 接受变量名必须为modelValue
+				// 可也为props: ['modelValue'],但父组件中接受为v-model:app = "count"
+				props: ['modelValue'],
+				methods: {
+					handleClick() {
+						// 通过this.$emit('事件名');来告诉父组件修改count
+						// 触发事件名字必须是updata:modelValue
+						this.$emit('update:modelValue', this.modelValue + 1);
+					}
+				},
+				template: `
+					<div @click='handleClick'>{{modelValue}}</div>
+				`
+			});
+			const vm = app.mount("#box");
+		</script>
+	</body>
+</html>

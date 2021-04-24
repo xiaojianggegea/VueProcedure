@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组件间双向绑定高级</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script type="text/javascript">
+			const app = Vue.createApp({
+				data() {
+					return {
+						count: 'a'
+						// count1: 1
+					}
+				},
+				// ****父组件****
+				// 1、在父组件上设置监听子组件事件方法，命名时父组件上如：@add-one
+				// 2、<counter v-model:count="count" v-model:count1="count1"/>多个组件间双向绑定
+				// 3、<counter v-model.captalize="count"/> captalize修饰符
+				// 4、
+				template: `
+					<div>
+						<counter v-model.uppercase="count"/>
+					</div>
+				`
+			});
+			// ****子组件****
+			app.component('counter', {
+				// props: ['modelValue'],
+				props: {
+					'modelValue': String,
+					// 传一个空对象
+					'modelModifiers':{ 
+						default: () => ({})
+					}
+				},
+				// mounted() {
+				// 	console.log(this.modelModifiers)
+				// },
+				methods: {
+					handleClick() {
+						let newValue = this.modelValue + 'b';
+						if(this.modelModifiers.uppercase){
+							newValue = newValue.toUpperCase();
+						}
+						// 通过this.$emit('事件名');来告诉父组件修改count
+						// 触发事件名字必须是updata:modelValue
+						this.$emit('update:modelValue', newValue);
+					},
+					// handleClick1() {
+					// 	// 通过this.$emit('事件名');来告诉父组件修改count
+					// 	// 触发事件名字必须是updata:modelValue
+					// 	this.$emit('update:count1', this.count1 + 3);
+					// }
+				},
+				// <div @click='handleClick1'>{{count1}}</div>  第二个双向数据绑定
+				template: `
+						<div @click='handleClick'>{{modelValue}}</div>
+					`
+			});
+			const vm = app.mount("#box");
+		</script>
+	</body>
+</html>

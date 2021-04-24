@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Non-Props属性</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="box"></div>
+		<!-- Non-Props -->
+		<script type="text/javascript">
+			const app = Vue.createApp({
+				template:`
+				<div>
+					<counter style="color:red" class="haha"/>
+				</div>`
+			});
+			app.component('counter',{
+				// inheritAttrs:false,添加此属性就不会在子组件上添加属性msg
+				// 多个根节点时父组件style属性失效,在子组件节点中添加v-bind="$attrs"起效，将父组件中的所有属性添加到子组件
+				// v-bind:class="$attrs.class" 使用父组件中的class属性
+				template:`
+				<div :class="$attrs.class">Counter</div>
+				<div :="$attrs">Counter</div>
+				<div>Counter</div>
+				`
+			});
+			const vm = app.mount("#box");
+		</script>
+	</body>
+</html>
